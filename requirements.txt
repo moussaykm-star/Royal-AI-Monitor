@@ -1,6 +1,5 @@
-streamlit>=1.37
-yfinance
-pandas
-numpy
-scikit-learn
+flask
 requests
+numpy
+pandas
+scikit-learn
