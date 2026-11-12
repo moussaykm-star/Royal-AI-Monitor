@@ -1,7 +1,6 @@
-streamlit
+streamlit>=1.37
 yfinance
 pandas
-pandas_ta
-scikit-learn
-joblib
 numpy
+scikit-learn
+requests
