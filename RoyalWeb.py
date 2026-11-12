@@ -37,33 +37,37 @@ with st.sidebar:
 # ---------- التأثيرات البصرية ----------
 st.markdown(f"<style>.stApp{{--g:{cfg['glow']};--s:{cfg['scale']}}}</style>", unsafe_allow_html=True)
 st.markdown("""<style>
-.stApp{background:#000;color:#fff;direction:rtl;position:relative;z-index:0}
-header[data-testid=stHeader]{background:transparent}
-[data-testid=stSidebar]{background:rgba(12,12,20,.94)}
-.stApp::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;opacity:var(--g);
- background:radial-gradient(55% 38% at 15% 0,#1e8f50,transparent 70%),radial-gradient(55% 38% at 50% 0,#4285f4,transparent 70%),radial-gradient(55% 38% at 85% 0,#9b72cb,transparent 70%);
- background-size:200% 100%;animation:flow 14s ease-in-out infinite alternate,breathe 7s ease-in-out infinite}
-@keyframes flow{from{background-position:0 0}to{background-position:100% 0}}
-@keyframes breathe{50%{filter:brightness(1.4)}}
-.stApp::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;opacity:calc(.65*var(--g));
+html,body{background:#000!important}
+[data-testid=stAppViewContainer],[data-testid=stMain],.stMain,.main{background:transparent!important}
+header[data-testid=stHeader]{background:transparent!important}
+.stApp{direction:rtl;color:#fff;
+ background:radial-gradient(55% 38% at 15% 0,rgba(30,143,80,var(--g)),transparent 70%) 0 0/200% 100% no-repeat,
+ radial-gradient(55% 38% at 50% 0,rgba(66,133,244,var(--g)),transparent 70%) 0 0/200% 100% no-repeat,
+ radial-gradient(55% 38% at 85% 0,rgba(155,114,203,var(--g)),transparent 70%) 0 0/200% 100% no-repeat,#000;
+ animation:flow 14s ease-in-out infinite alternate}
+@keyframes flow{from{background-position:0 0,0 0,0 0}to{background-position:100% 0,100% 0,100% 0}}
+.edge{position:fixed;inset:0;pointer-events:none;z-index:1;opacity:calc(.65*var(--g));
  background:linear-gradient(90deg,#af87eb,#8c8c9e,#f0f0fa,#9169d7,#78788a,#af87eb) 0 0/100vw 100% repeat-x;
  -webkit-mask-image:linear-gradient(#000,transparent 9%,transparent 91%,#000);mask-image:linear-gradient(#000,transparent 9%,transparent 91%,#000);
  animation:slide 12s linear infinite}
 @keyframes slide{to{background-position:100vw 0}}
-h1.t{font-weight:200;margin:0 0 4px;background:linear-gradient(90deg,#9cc9ff,#b9a2ff,#f0f0fa);-webkit-background-clip:text;color:transparent}
-.card{margin:0 0 14px;padding:calc(14px*var(--s));border-radius:20px;font-size:calc(15px*var(--s));background:rgba(255,255,255,.05);
- backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.1);box-shadow:0 0 calc(34px*var(--g)) -8px var(--c);animation:pulse 5s ease-in-out infinite}
+h1.t,.card,.psy,.v,.tick,.ld,.cap{position:relative;z-index:2;color:#fff!important}
+h1.t{font-weight:200;margin:0 0 4px;text-shadow:0 0 26px #b9a2ff}
+.ld{padding:12px 16px;margin:8px 0;border-radius:14px;background:rgba(255,255,255,.07);border:1px solid rgba(185,162,255,.35)}
+.cap{opacity:.55;font-size:.8em;margin-top:8px}
+.card{margin:0 0 14px;padding:calc(14px*var(--s));border-radius:20px;font-size:calc(15px*var(--s));background:rgba(255,255,255,.06);
+ backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.12);box-shadow:0 0 calc(34px*var(--g)) -8px var(--c);animation:pulse 5s ease-in-out infinite}
 @keyframes pulse{50%{box-shadow:0 0 calc(54px*var(--g)) -4px var(--c)}}
 .h{display:flex;justify-content:space-between;align-items:center;gap:10px}.h svg{max-width:44%}
-.p{direction:ltr;text-align:right;font-size:1.9em;font-weight:250;color:var(--c)}
+.p{direction:ltr;text-align:right;font-size:1.9em;font-weight:250;color:var(--c)!important}
 .row{display:grid;grid-template-columns:2.4em 1fr 3.8em;align-items:center;gap:8px;margin-top:6px;font-size:.85em}
-.row small{grid-column:1/-1;opacity:.5;font-size:.72em}
-.bar{height:6px;border-radius:6px;background:rgba(255,255,255,.1);overflow:hidden;direction:ltr}.bar i{display:block;height:100%}
+.row small{grid-column:1/-1;opacity:.55;font-size:.72em}
+.bar{height:6px;border-radius:6px;background:rgba(255,255,255,.12);overflow:hidden;direction:ltr}.bar i{display:block;height:100%}
 .psy{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:8px 0}
-.psy .b{padding:12px;border-radius:16px;background:rgba(255,255,255,.05);border:1px solid rgba(185,162,255,.25);box-shadow:0 0 28px -10px #b9a2ff;text-align:center}
+.psy .b{padding:12px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(185,162,255,.3);box-shadow:0 0 28px -10px #b9a2ff;text-align:center}
 .psy small,.psy span{display:block;opacity:.65;font-size:.75em}.psy b{font-size:1.5em;font-weight:250}
-.v{margin:0 0 12px;opacity:.85;font-size:.9em}
-.tick{overflow:hidden;white-space:nowrap;margin:6px 0 14px;padding:8px 0;border-radius:12px;background:rgba(255,255,255,.04);direction:ltr}
+.v{margin:0 0 12px;opacity:.9;font-size:.9em}
+.tick{overflow:hidden;white-space:nowrap;margin:6px 0 14px;padding:8px 0;border-radius:12px;background:rgba(255,255,255,.05);direction:ltr}
 .tick span{display:inline-block;padding-left:100%;animation:mq 90s linear infinite;font-weight:300;font-size:.9em}
 @keyframes mq{to{transform:translateX(-100%)}}
 </style>""", unsafe_allow_html=True)
@@ -84,7 +88,7 @@ def kernel(p, h=8.0, r=8.0, L=20):  # نفس النواة، لكن بمتجها�
 
 @st.cache_data(ttl=120, show_spinner=False)
 def hist(sym, period, interval):
-    return yf.Ticker(sym).history(period=period, interval=interval)
+    return yf.Ticker(sym).history(period=period, interval=interval, timeout=15)
 
 @st.cache_data(ttl=120, show_spinner=False)
 def analyze(sym, tf):
@@ -106,7 +110,7 @@ def analyze(sym, tf):
         y = (c.shift(-1) > c).astype(int).reindex(f.index)
         X, yy = f.iloc[:-1], y.iloc[:-1]
         cut = int(len(X) * 0.75)
-        m = RandomForestClassifier(n_estimators=80, min_samples_leaf=5, random_state=42, n_jobs=1)
+        m = RandomForestClassifier(n_estimators=50, max_depth=7, min_samples_leaf=5, random_state=42, n_jobs=1)
         m.fit(X.iloc[:cut], yy.iloc[:cut])
         acc = float((m.predict(X.iloc[cut:]) == yy.iloc[cut:]).mean()) * 100  # اختبار صادق على بيانات لم يرَها
         m.fit(X, yy)
@@ -185,19 +189,26 @@ def psy(sigs, heats):
             box("🤝 توافق الإشارات", f'{agree:.0f}% {"صعود" if maj > 0 else "هبوط"}', "فكر مشترك بين الأدوات") +
             box("🔥 حرارة القطيع", f"{heat:.0f}%", "ابتعاد RSI عن الحياد") + f'</div><div class="v">{v} (مقياس للمزاج لا دليل سببي)</div>')
 
-st.markdown('<h1 class="t">👑 Royal AI</h1>', unsafe_allow_html=True)
+st.markdown('<div class="edge"></div><h1 class="t">👑 Royal AI</h1>', unsafe_allow_html=True)
 
 def dash():
-    res = [card(k) for k in cfg["assets"]]
-    sigs = [s for r in res for s in r[1]]
-    heats = [r[2] for r in res if r[2] is not None]
-    st.markdown(psy(sigs, heats), unsafe_allow_html=True)
+    top = st.empty()
+    tk = st.empty()
+    cols = st.columns(cfg["cols"])
+    slots = [cols[i % cfg["cols"]].empty() for i in range(len(cfg["assets"]))]
+    top.markdown('<div class="ld">⏳ جارٍ تحليل الأسواق… قد يستغرق أول تحميل دقيقة أو أكثر</div>', unsafe_allow_html=True)
     nw = news()
     if nw:
-        st.markdown('<div class="tick"><span>' + " &nbsp;•&nbsp; ".join(html.escape(t) for t in nw) + "</span></div>", unsafe_allow_html=True)
-    cols = st.columns(cfg["cols"])
-    for i, r in enumerate(res):
-        cols[i % cfg["cols"]].markdown(r[0], unsafe_allow_html=True)
-    st.caption(f"آخر تحديث {time.strftime('%H:%M:%S')} · «اختبار صادق» = صحة النموذج على بيانات لم يتدرّب عليها، وقرب 50% يعني قرب العشوائية. ليست نصيحة مالية.")
+        tk.markdown('<div class="tick"><span>' + " &nbsp;•&nbsp; ".join(html.escape(t) for t in nw) + "</span></div>", unsafe_allow_html=True)
+    sigs, heats = [], []
+    for n, (k, slot) in enumerate(zip(cfg["assets"], slots), 1):
+        h, s_, ht = card(k)
+        slot.markdown(h, unsafe_allow_html=True)
+        sigs += s_
+        if ht is not None:
+            heats.append(ht)
+        top.markdown(f'<div class="ld">⏳ تم تحليل {n} من {len(slots)}</div>', unsafe_allow_html=True)
+    top.markdown(psy(sigs, heats), unsafe_allow_html=True)
+    st.markdown(f'<div class="cap">آخر تحديث {time.strftime("%H:%M:%S")} · «اختبار صادق» = صحة النموذج على بيانات لم يتدرّب عليها، وقرب 50% يعني قرب العشوائية. ليست نصيحة مالية.</div>', unsafe_allow_html=True)
 
 (st.fragment(run_every=cfg["refresh"])(dash) if hasattr(st, "fragment") else dash)()
